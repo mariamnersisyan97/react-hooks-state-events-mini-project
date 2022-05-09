@@ -1,9 +1,22 @@
 import React from "react";
+import Task from "./Task";
+import { CATEGORIES, TASKS } from "../data";
 
-function TaskList() {
+function TaskList({ CATEGORIES, TASKS }) {
+  const handleDelete = (e) => {
+    const deleteTask = e.target.parentNode;
+    deleteTask.remove();
+  };
   return (
     <div className="tasks">
-      {/* display a list of tasks using Task component */}
+      {TASKS.map((task) => (
+        <Task
+          key={task.text}
+          text={task.text}
+          category={task.category}
+          handleDelete={handleDelete}
+        />
+      ))}
     </div>
   );
 }
